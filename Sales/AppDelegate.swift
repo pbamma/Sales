@@ -14,10 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    override init() {
+        FirebaseApp.configure()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        FirebaseApp.configure()
+        setupAppearance()
         return true
     }
 
@@ -43,6 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func setupAppearance() {
+        // navigation title
+        let appearance = UINavigationBar.appearance()
+        appearance.isTranslucent = false
+        appearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.COLOR_MAIN_TINT_2, NSAttributedStringKey.font: UIFont(name: "Avenir-Heavy", size: 17)!]
+        
+        appearance.tintColor = Constants.COLOR_MAIN_TINT_2
+        
+    }
 }
 
