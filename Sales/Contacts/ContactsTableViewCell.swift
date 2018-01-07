@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ContactsTableViewCell: UITableViewCell {
 
@@ -23,8 +24,11 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     
-    public func loadModel() {
-    
+    public func loadData(snapshot: DataSnapshot) {
+        guard let contact = snapshot.value as? [String: String] else { return }
+        let first = contact["first"] ?? ""
+        let last = contact["last"] ?? ""
+        self.nameLabel.text = first + " " + last
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

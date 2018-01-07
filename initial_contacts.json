@@ -8,8 +8,8 @@
       "imageURL" : ""
     },
     "2" : {
-      "first" : "Carolyn Porko",
-      "last" : "Armstrong",
+      "first" : "Carolyn",
+      "last" : "Porco",
       "email" : "",
       "phone" : "",
       "imageURL" : ""
@@ -59,6 +59,76 @@
     "9" : {
       "first" : "Edwin",
       "last" : "Hubble",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "10" : {
+      "first" : "Nicolaus",
+      "last" : "Copernicus",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "11" : {
+      "first" : "Johannes",
+      "last" : "Kepler",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "12" : {
+      "first" : "Tycho",
+      "last" : "Brahe",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "13" : {
+      "first" : "Stephen",
+      "last" : "Hawking",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "14" : {
+      "first" : "Isaac",
+      "last" : "Newton",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "15" : {
+      "first" : "William",
+      "last" : "Herschel",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "16" : {
+      "first" : "Edmond",
+      "last" : "Halley",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "17" : {
+      "first" : "Charles",
+      "last" : "Messier",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "18" : {
+      "first" : "Christiaan",
+      "last" : "Huygens",
+      "email" : "",
+      "phone" : "",
+      "imageURL" : ""
+    },
+    "19" : {
+      "first" : "Henrietta",
+      "last" : "Swan Leavitt",
       "email" : "",
       "phone" : "",
       "imageURL" : ""

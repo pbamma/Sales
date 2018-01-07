@@ -7,24 +7,34 @@
 //
 
 import UIKit
+import Firebase
 
-class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ContactsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
-    let names = ["Bill Foote", "Philip Starner", "Joe", "Jane", "Louis", "Alejandra", "Phong", "Sam", "Lonie"]
+    var rootRef: DatabaseReference!
+    private var databaseHandle: DatabaseHandle!
+    var contacts: [DataSnapshot]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addButton.layer.cornerRadius = addButton.frame.size.height / 2
         addButton.layer.masksToBounds = true
+        
+        configureDatabase()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    deinit {
+        if let databaseHandle = databaseHandle {
+            self.rootRef.child("contacts").removeObserver(withHandle: databaseHandle)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +42,14 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    func configureDatabase() {
+        rootRef = Database.database().reference()
+        databaseHandle = rootRef.child("contacts").observe(DataEventType.childAdded, with:  { [weak self] (snapshot: DataSnapshot) in
+            guard let strongSelf = self else { return }
+            strongSelf.contacts.append(snapshot)
+            strongSelf.tableView.insertRows(at: [IndexPath(row: strongSelf.contacts.count-1, section: 0)], with: .automatic)
+        })
+    }
 
     
     // MARK: - Navigation
@@ -49,17 +67,20 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: - TableView Delegate
-    
+   
+
+}
+
+extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactsTableViewCell
         
-        cell.nameLabel.text = names[indexPath.item]
-        
+        let contact = self.contacts[indexPath.row]
+        cell.loadData(snapshot: contact)
         return cell
     }
     
@@ -67,5 +88,4 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "showContactsDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }
